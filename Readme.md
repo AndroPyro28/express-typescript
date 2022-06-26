@@ -32,11 +32,9 @@
 # configuring scripts
 #
 
-#start----
 "scripts": {
     "start": "node ./dist/app.js",
     "dev": "nodemon ./src/app.ts",
     "build": "tsc.cmd -p ."
   },
-#end----
 
