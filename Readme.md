@@ -1,12 +1,25 @@
 # NodeJs Express-Typescript
 
+#
 # generate tsconfig
+#
 
 #tsc.cmd --init
 
-# configurating ts config
+#
+# configurating tsconfig/compiler option
+#
 
+#noEmitOnError:true
+#allowJs:true
+#rootDir:"./src",
+#outDir: "./dist",
+#target:"es6",
+#moduleResolution: "node",
+
+#
 # packages
+#
 
 #typescript
 #express
@@ -15,7 +28,9 @@
 #@types/node
 #@types/express
 
+#
 # configuring scripts
+#
 
 #start----
 "scripts": {
