@@ -11,10 +11,15 @@
 #
 
 #noEmitOnError:true
+
 #allowJs:true
+
 #rootDir:"./src",
+
 #outDir: "./dist",
+
 #target:"es6",
+
 #moduleResolution: "node",
 
 #
@@ -22,10 +27,15 @@
 #
 
 #typescript
+
 #express
+
 #ts-node
+
 #nodemon
+
 #@types/node
+
 #@types/express
 
 #
@@ -33,7 +43,7 @@
 #
 
 "scripts": {
-    "start": "node ./dist/app.js",
+    "start": "node ./dist/app.js
     "dev": "nodemon ./src/app.ts",
     "build": "tsc.cmd -p ."
   },
