@@ -1,5 +1,6 @@
 import { NextFunction, Response } from "express";
 import { RequestInterface } from "../interface/RequestInterface";
+
 const addNumber = (rest: number[]): number => {
   return rest.reduce((total, number) => total + number, 0);
 };
