@@ -10,4 +10,5 @@ const router = (0, express_1.Router)();
 const { middleFunction } = new middleware_1.default();
 const controller = new publicController_1.default();
 router.get('/', middleFunction, controller.indexController);
+router.post('/post', middleFunction, controller.someController);
 exports.default = router;

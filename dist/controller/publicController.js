@@ -13,12 +13,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const connectDb_1 = __importDefault(require("../config/connectDb"));
+const class_validator_1 = require("class-validator");
+const ValidateClass_1 = require("../classes/ValidateClass");
 class PublicController {
     constructor() {
         this.indexController = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const [result, _] = yield connectDb_1.default.execute('INSERT INTO ts (username, password) VALUES (?, ?)', ['jean', '456']);
+            req.addNumbers;
             console.log(result);
-            res.send("hello world andro");
+            res.status(200).json({ name: 'andro', age: 50 });
+        });
+        this.someController = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const validateClass = new ValidateClass_1.ValidateClass(req.body);
+            (0, class_validator_1.validateOrReject)(validateClass)
+                .then(good => {
+                console.log('yes');
+                console.log(good);
+            })
+                .catch(bad => {
+                console.log('no');
+                console.log(bad);
+            });
         });
     }
 }
