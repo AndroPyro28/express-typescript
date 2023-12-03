@@ -1,18 +1,42 @@
 import { NextFunction, Response } from "express";
 import { RequestInterface } from "../interface/RequestInterface";
-
-const addNumber = (rest: number[]): number => {
-  return rest.reduce((total, number) => total + number, 0);
-};
+import { PrismaClient } from "@prisma/client";
+import jwt from "jsonwebtoken";
 
 class MiddleWare {
-  middleFunction = (
+  middleFunction = async (
     req: RequestInterface,
     res: Response,
     next: NextFunction
   ) => {
     try {
-      req.addNumbers = addNumber([1, 2, 3, 4, 5]);
+      const prisma = new PrismaClient();
+
+      const token = req.headers.token
+
+      if (!token) {
+        return res.status(401).json({ message: "Token not Found" });
+      }
+
+      const payload = jwt.verify(token as string, "secret") as {
+        id: number;
+        iat: number;
+        exp: number;
+      };
+
+      const patient = await prisma.patient.findFirst({
+        where: {
+          patient_id: payload.id,
+        },
+      });
+
+      if (!patient) {
+        return res.status(401).json("Patient not found");
+      }
+
+      req.user = patient;
+
+      console.log('hitted')
       next();
     } catch (error: any) {
       console.log(error.message);
